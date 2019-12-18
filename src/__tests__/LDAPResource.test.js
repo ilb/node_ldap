@@ -1,7 +1,7 @@
 import OpenLDAPConfig from '../OpenLDAPConfig';
 import LDAPClientConfig from '../LDAPClientConfig';
 import LDAPClientFactory from '../LDAPClientFactory';
-import LDAPLastMod from '../LDAPLastMod';
+import LDAPResource from '../LDAPResource';
 import LdapClient from 'ldapjs-client';
 import * as path from 'path';
 
@@ -12,13 +12,14 @@ const ldapConfig = new OpenLDAPConfig(ldapConfPath);
 const ldapClientFactory = new LDAPClientFactory();
 
 
-const expected = '123';
+const expected = 'mysql://localhost/testapp';
 
-test('getLastMod', async () => {
+test('search', async () => {
     const ldapClient = ldapClientFactory.getLDAPClient(new LDAPClientConfig(ldapConfig));
-    const ldapLastMod = new LDAPLastMod(ldapClient);
-    const lmdt = await ldapLastMod.getLastMod();
-    expect(isNaN(lmdt.getTime())).toBe(false);
+    const ldapResource = new LDAPResource(ldapClient);
+    const resourceUrl = await ldapResource.lookup('ru.bystrobank.apps.testapp.db');
+    expect(resourceUrl).toBe(expected);
+
     ldapClientFactory.close();
 });
 
