@@ -18,9 +18,4 @@ export default class LDAPConfig {
         return this.caCert;
     }
 
-    /**
-     * get params structure for ldapjs-client
-     */
-    getParams() {
-    }
 }
