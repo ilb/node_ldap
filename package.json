@@ -1,0 +1,30 @@
+{
+  "name": "@ilb/node_ldap",
+  "version": "1.0.0",
+  "description": "",
+  "author": "github@bystrobank.ru",
+  "license": "ISC",
+  "main": "lib/context.js",
+  "scripts": {
+    "build": "babel src --out-dir lib",
+    "test": "jest",
+    "nbignore": "mkdir -p node_modules && touch node_modules/.nbignore",
+    "versionpatch": "npm version patch"
+  },
+  "browser": {
+    "fs": false
+  },
+  "files": [
+    "lib"
+  ],
+  "dependencies": {
+    "ldapjs-client": "^0.1.1"
+  },
+  "devDependencies": {
+    "@babel/core": "^7.7.2",
+    "@babel/preset-env": "^7.7.1",
+    "babel-jest": "^24.9.0",
+    "jest": "^24.9.0",
+    "regenerator-runtime": "^0.13.3"
+  }
+}
