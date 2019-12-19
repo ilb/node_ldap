@@ -8,11 +8,11 @@ export default class CacheableLDAPResource {
 
     static async getInstance(ldapClient) {
         const ldapCache = await LDAPCache.getInstance(ldapClient);
-        return new CacheableLDAPResource(ldapClient, ldapCache);
+        return new CacheableLDAPResource(new LDAPResource(ldapClient), ldapCache);
     }
 
-    constructor(ldapClient, ldapCache) {
-        this.ldapResource = new LDAPResource(ldapClient);
+    constructor(ldapResource, ldapCache) {
+        this.ldapResource = ldapResource;
         this.ldapCache = ldapCache;
     }
 

@@ -2,6 +2,7 @@ export default class LDAPResource {
 
     constructor(ldapClient) {
         this.ldapClient = ldapClient;
+        this.lookupCount = 0;
     }
 
     async lookup(name, scope) {
@@ -16,6 +17,7 @@ export default class LDAPResource {
         if (entries.length > 0 && entries[0].labeledURI) {
             result = entries[0].labeledURI;
         }
+        this.lookupCount++;
         return result;
     }
 }
