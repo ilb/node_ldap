@@ -4,16 +4,14 @@ export default class LDAPResource {
         this.ldapClient = ldapClient;
     }
 
-    async lookup(name) {
+    async lookup(name, scope) {
         const options = {
             filter: `(&(objectClass=applicationProcess)(cn=${name}))`,
+            scope: 'sub',
             attributes: ['labeledURI']
         };
-
-        console.log('filter',`(&(objectClass=applicationProcess)(cn=${name}))`);
-
-        const entries = await this.ldapClient.search('c=ru', options);
-        console.log('entries',entries);
+        const entries = await this.ldapClient.search(scope, options);
+        //console.log('entries',entries);
         let result = null;
         if (entries.length > 0 && entries[0].labeledURI) {
             result = entries[0].labeledURI;

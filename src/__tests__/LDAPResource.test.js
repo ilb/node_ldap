@@ -17,7 +17,7 @@ const expected = 'mysql://localhost/testapp';
 test('search', async () => {
     const ldapClient = ldapClientFactory.getLDAPClient(new LDAPClientConfig(ldapConfig));
     const ldapResource = new LDAPResource(ldapClient);
-    const resourceUrl = await ldapResource.lookup('ru.bystrobank.apps.testapp.db');
+    const resourceUrl = await ldapResource.lookup('ru.bystrobank.apps.testapp.db','c=ru');
     expect(resourceUrl).toBe(expected);
 
     ldapClientFactory.close();
