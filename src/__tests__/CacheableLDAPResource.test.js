@@ -17,8 +17,22 @@ test('getInstance', async () => {
     const ldapClient = ldapClientFactory.getLDAPClient(new LDAPClientConfig(ldapConfig));
     let ldapResource = await CacheableLDAPResource.getInstance(ldapClient);
 
-    const resourceUrl = await ldapResource.lookup('ru.bystrobank.apps.testapp.db','c=ru');
+    let resourceUrl = await ldapResource.lookup('ru.bystrobank.apps.testapp.db','c=ru');
 
     expect(resourceUrl).toBe(expected);
+
+    expect(ldapResource.ldapResource.lookupCount).toBe(1);
+
+    resourceUrl = await ldapResource.lookup('ru.bystrobank.apps.testapp.db','c=ru');
+
+    expect(resourceUrl).toBe(expected);
+
+    // second call should be cached
+    expect(ldapResource.ldapResource.lookupCount).toBe(1);
+
+    resourceUrl = await ldapResource.lookup('ru.bystrobank.apps.bailverification.db','c=ru');
+
+    expect(ldapResource.ldapResource.lookupCount).toBe(2);
+
     ldapClientFactory.close();
 });
