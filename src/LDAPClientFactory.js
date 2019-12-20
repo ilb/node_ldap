@@ -1,6 +1,11 @@
 import LdapClient from 'ldapjs-client';
 //import ShutdownHook from 'shutdown-hook';
 
+/**
+ * LDAP client factory fith connection reuse
+ * TODO: register close hook
+ * @type type
+ */
 class LDAPClientFactory {
 
     constructor() {

@@ -1,3 +1,6 @@
+/**
+ * LDAP configuration
+ */
 export default class LDAPConfig {
 
     constructor() {
