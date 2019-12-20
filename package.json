@@ -18,7 +18,6 @@
     "lib"
   ],
   "dependencies": {
-    "babel-preset-es2015": "^6.24.1",
     "ldapjs-client": "^0.1.1"
   },
   "devDependencies": {
