@@ -1,5 +1,5 @@
 /**
- * params structure for ldapjs-client
+ * This class builds params structure for ldapjs-client from LDAPConfig structure
  */
 class LDAPClientConfig {
 

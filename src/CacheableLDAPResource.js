@@ -6,9 +6,9 @@ import LDAPCache from './LDAPCache';
  */
 export default class CacheableLDAPResource {
 
-    static async getInstance(ldapClient) {
+    static async getInstance(ldapClient, base) {
         const ldapCache = await LDAPCache.getInstance(ldapClient);
-        return new CacheableLDAPResource(new LDAPResource(ldapClient), ldapCache);
+        return new CacheableLDAPResource(new LDAPResource(ldapClient, base), ldapCache);
     }
 
     constructor(ldapResource, ldapCache) {
