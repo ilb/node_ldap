@@ -1,6 +1,6 @@
 {
   "name": "@ilb/node_ldap",
-  "version": "1.0.4",
+  "version": "1.0.5",
   "description": "",
   "author": "github@bystrobank.ru",
   "license": "ISC",
@@ -12,7 +12,8 @@
     "versionpatch": "npm version patch"
   },
   "browser": {
-    "fs": false
+    "fs": false,
+    "ldapjs-client": false
   },
   "files": [
     "dist"
