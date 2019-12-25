@@ -2,25 +2,23 @@ import LDAPConfig from './LDAPConfig';
 
 export default class OpenLDAPConfig extends LDAPConfig{
 
-    constructor(configPath) {
+    constructor(config) {
         super();
-        this.configPath = configPath || '/etc/openldap/ldap.conf';
+        this.config = config;
         this.ldapSchemasRegexp = /^ldaps?:\/\//;
         this.loadValuesFromConfig();
     }
 
     loadValuesFromConfig() {
-        const config = OpenLDAPConfig.parseConfig(this.configPath);
-        if (config.URI) {
-            this.uri = config.URI.split(/\s+/).filter(l => l.match(this.ldapSchemasRegexp));
+        const configMap = OpenLDAPConfig.parseConfig(this.config);
+        if (configMap.URI) {
+            this.uri = configMap.URI.split(/\s+/).filter(l => l.match(this.ldapSchemasRegexp));
         }
-        this.base = config.BASE || null;
-        this.caCert = config.TLS_CACERT || null;
+        this.base = configMap.BASE || null;
+        this.caCert = configMap.TLS_CACERT || null;
     }
 
-    static parseConfig(configPath) {
-        const fs = require('fs');
-        const config = fs.readFileSync(configPath, 'utf8');
+    static parseConfig(config) {
         const alllines = config.split(/\r?\n/);
         const lines = alllines
                 .map(l => l.replace(/#.*$/, '').trim()) // remove comments and trim
