@@ -8,7 +8,7 @@ import * as path from 'path';
 const fs = require('fs');
 const ldapConfPath = path.resolve('src/__tests__/ldap.conf');
 
-const ldapConfig = new OpenLDAPConfig(ldapConfPath);
+const ldapConfig = new OpenLDAPConfig(fs.readFileSync(ldapConfPath, 'utf8'));
 const ldapClientFactory = new LDAPClientFactory();
 
 const expected = 'mysql://localhost/testapp';

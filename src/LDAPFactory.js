@@ -14,7 +14,7 @@ export default class LDAPFactory {
         if (!fs.existsSync(ldapConfPath)) {
             throw new Error("Ldap client auto-configuration failed: file " + ldapConfPath + " missing.")
         }
-        this.ldapConfig = new OpenLDAPConfig(ldapConfPath);
+        this.ldapConfig = new OpenLDAPConfig(fs.readFileSync(ldapConfPath, 'utf8'));
         this.ldapClientConfig = new LDAPClientConfig(this.ldapConfig);
         this.ldapClientFactory = new LDAPClientFactory();
         this.ldapClient = null;
