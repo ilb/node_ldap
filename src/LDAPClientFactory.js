@@ -1,4 +1,4 @@
-//import LdapClient from 'ldapjs-client';
+import LdapClient from 'ldapjs-client';
 //import ShutdownHook from 'shutdown-hook';
 
 /**
@@ -10,7 +10,6 @@ class LDAPClientFactory {
 
     constructor() {
         this.connections = {};
-        this.LdapClientClass = require('ldapjs-client');
 //        const shutdownHook = new ShutdownHook({});
         //shutdownHook.add(_ => this.close(), {})
         //shutdownHook.add(_ => console.log('shutdown!!!'), {})
@@ -28,7 +27,7 @@ class LDAPClientFactory {
 
     getLDAPClient(ldapClientConfig) {
         if (!this.connections[ldapClientConfig.url]) {
-            this.connections[ldapClientConfig.url] = new this.LdapClientClass(ldapClientConfig);
+            this.connections[ldapClientConfig.url] = new LdapClient(ldapClientConfig);
         }
         return this.connections[ldapClientConfig.url];
     }

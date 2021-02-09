@@ -1,3 +1,4 @@
+import { readFileSync } from 'fs';
 import OpenLDAPConfig from '../OpenLDAPConfig';
 import LDAPClientConfig from '../LDAPClientConfig';
 import LDAPClientFactory from '../LDAPClientFactory';
@@ -5,10 +6,9 @@ import LDAPResource from '../LDAPResource';
 import LdapClient from 'ldapjs-client';
 import * as path from 'path';
 
-const fs = require('fs');
 const ldapConfPath = path.resolve('src/__tests__/ldap.conf');
 
-const ldapConfig = new OpenLDAPConfig(fs.readFileSync(ldapConfPath, 'utf8'));
+const ldapConfig = new OpenLDAPConfig(readFileSync(ldapConfPath, 'utf8'));
 const ldapClientFactory = new LDAPClientFactory();
 
 

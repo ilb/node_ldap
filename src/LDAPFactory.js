@@ -1,3 +1,4 @@
+import { existsSync, readFileSync } from 'fs';
 import OpenLDAPConfig from './OpenLDAPConfig';
 import URILDAPConfig from './URILDAPConfig';
 import LDAPClientConfig from './LDAPClientConfig';
@@ -10,14 +11,13 @@ import CacheableLDAPResource from './CacheableLDAPResource';
 export default class LDAPFactory {
 
     constructor() {
-        const fs = require('fs');
         const ldapConfPath = '/etc/openldap/ldap.conf';
         if (process.env.LDAP_URL) {
             //configure using LDAP_URL variable if set
             this.ldapConfig = new URILDAPConfig(process.env.LDAP_URL,process.env.NODE_EXTRA_CA_CERTS);
-        } else if (fs.existsSync(ldapConfPath)) {
+        } else if (existsSync(ldapConfPath)) {
             //configure using openldap configuration file
-            this.ldapConfig = new OpenLDAPConfig(fs.readFileSync(ldapConfPath, 'utf8'));
+            this.ldapConfig = new OpenLDAPConfig(readFileSync(ldapConfPath, 'utf8'));
         } else {
             throw new Error("Ldap client auto-configuration failed: LDAP_URL environment variable OR file " + ldapConfPath + " required.")
         }
