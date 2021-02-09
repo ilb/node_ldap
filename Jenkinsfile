@@ -7,7 +7,7 @@ pipeline {
     stages {
         stage ('Build') {
             steps {
-                nodejs('node10') {
+                nodejs('node14') {
                     sh 'npm install'
                     sh 'npm run build'
                     sh 'npm publish'
