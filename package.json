@@ -1,12 +1,12 @@
 {
   "name": "@ilb/node_ldap",
-  "version": "1.0.7",
+  "version": "1.0.8",
   "description": "",
   "author": "github@bystrobank.ru",
   "license": "ISC",
-  "main": "dist/LDAPFactory.js",
+  "type": "module",
+  "main": "src/LDAPFactory.js",
   "scripts": {
-    "build": "babel src --out-dir dist",
     "test": "jest",
     "nbignore": "mkdir -p node_modules && touch node_modules/.nbignore",
     "versionpatch": "npm version patch"
@@ -16,7 +16,7 @@
     "ldapjs-client": false
   },
   "files": [
-    "dist"
+    "src"
   ],
   "dependencies": {
     "@babel/runtime": "^7.10.5",
