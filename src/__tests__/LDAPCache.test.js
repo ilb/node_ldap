@@ -12,10 +12,10 @@ const ldapConfig = new OpenLDAPConfig(readFileSync(ldapConfPath, 'utf8'));
 const ldapClientFactory = new LDAPClientFactory();
 
 test('getInstance', async () => {
-    const ldapClient = ldapClientFactory.getLDAPClient(new LDAPClientConfig(ldapConfig));
-    let ldapCache = await LDAPCache.getInstance(ldapClient);
-    ldapCache.set("key","value1");
-    ldapCache = await LDAPCache.getInstance(ldapClient);
-    expect(ldapCache.get("key")).toBe("value1");
-    ldapClientFactory.close();
+  const ldapClient = ldapClientFactory.getLDAPClient(new LDAPClientConfig(ldapConfig));
+  let ldapCache = await LDAPCache.getInstance(ldapClient);
+  ldapCache.set('key', 'value1');
+  ldapCache = await LDAPCache.getInstance(ldapClient);
+  expect(ldapCache.get('key')).toBe('value1');
+  ldapClientFactory.close();
 });

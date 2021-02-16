@@ -6,14 +6,12 @@ import LDAPConfig from './LDAPConfig';
  * example: ldaps://devel.net.ilb.ru/c=ru
  */
 export default class URILDAPConfig extends LDAPConfig {
-
-    constructor(uri, caCert) {
-        super();
-        const urlobj = parse(uri);
-        this.base = urlobj.pathname.substring(1);
-        urlobj.pathname = null;
-        this.uri = [format(urlobj)];
-        this.caCert = caCert;
-    }
-
+  constructor(uri, caCert) {
+    super();
+    const urlobj = parse(uri);
+    this.base = urlobj.pathname.substring(1);
+    urlobj.pathname = null;
+    this.uri = [format(urlobj)];
+    this.caCert = caCert;
+  }
 }

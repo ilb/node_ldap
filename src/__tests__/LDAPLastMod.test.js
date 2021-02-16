@@ -11,14 +11,12 @@ const ldapConfPath = path.resolve('src/__tests__/ldap.conf');
 const ldapConfig = new OpenLDAPConfig(readFileSync(ldapConfPath, 'utf8'));
 const ldapClientFactory = new LDAPClientFactory();
 
-
 const expected = '123';
 
 test('getLastMod', async () => {
-    const ldapClient = ldapClientFactory.getLDAPClient(new LDAPClientConfig(ldapConfig));
-    const ldapLastMod = new LDAPLastMod(ldapClient);
-    const lmdt = await ldapLastMod.getLastMod();
-    expect(isNaN(lmdt.getTime())).toBe(false);
-    ldapClientFactory.close();
+  const ldapClient = ldapClientFactory.getLDAPClient(new LDAPClientConfig(ldapConfig));
+  const ldapLastMod = new LDAPLastMod(ldapClient);
+  const lmdt = await ldapLastMod.getLastMod();
+  expect(isNaN(lmdt.getTime())).toBe(false);
+  ldapClientFactory.close();
 });
-

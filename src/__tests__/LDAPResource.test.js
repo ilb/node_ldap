@@ -11,15 +11,13 @@ const ldapConfPath = path.resolve('src/__tests__/ldap.conf');
 const ldapConfig = new OpenLDAPConfig(readFileSync(ldapConfPath, 'utf8'));
 const ldapClientFactory = new LDAPClientFactory();
 
-
 const expected = 'mysql://localhost/testapp';
 
 test('search', async () => {
-    const ldapClient = ldapClientFactory.getLDAPClient(new LDAPClientConfig(ldapConfig));
-    const ldapResource = new LDAPResource(ldapClient);
-    const resourceUrl = await ldapResource.lookup('ru.bystrobank.apps.testapp.db','c=ru');
-    expect(resourceUrl).toBe(expected);
+  const ldapClient = ldapClientFactory.getLDAPClient(new LDAPClientConfig(ldapConfig));
+  const ldapResource = new LDAPResource(ldapClient);
+  const resourceUrl = await ldapResource.lookup('ru.bystrobank.apps.testapp.db', 'c=ru');
+  expect(resourceUrl).toBe(expected);
 
-    ldapClientFactory.close();
+  ldapClientFactory.close();
 });
-
