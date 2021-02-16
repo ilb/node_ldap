@@ -1,4 +1,4 @@
-import LDAPFactory from '../LDAPFactory';
+import LDAPFactory from '../src/LDAPFactory';
 const expected = 'mysql://localhost/testapp';
 
 const ldapFactory = new LDAPFactory();
@@ -15,7 +15,7 @@ test('getInstance', async () => {
 process.env.LDAP_URL = 'ldaps://devel.net.ilb.ru/cc=ru';
 const ldapFactory2 = new LDAPFactory();
 
-test('getInstance', async () => {
+test('getInstance2', async () => {
   const ldapResource = await ldapFactory2.getLDAPResource();
   const resourceUrl = await ldapResource.lookup('ru.bystrobank.apps.testapp.db');
 

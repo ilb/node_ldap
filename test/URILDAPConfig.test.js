@@ -1,4 +1,4 @@
-import URILDAPConfig from '../URILDAPConfig';
+import URILDAPConfig from '../src/URILDAPConfig';
 
 const ldapConfig = new URILDAPConfig(
   'ldaps://devel.net.ilb.ru/c=ru',

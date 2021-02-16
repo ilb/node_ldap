@@ -1,8 +1,8 @@
 import { readFileSync } from 'fs';
-import OpenLDAPConfig from '../OpenLDAPConfig';
+import OpenLDAPConfig from '../src/OpenLDAPConfig';
 import * as path from 'path';
 
-const ldapConfPath = path.resolve('src/__tests__/ldap.conf');
+const ldapConfPath = path.resolve('test/ldap.conf');
 
 const ldapConfig = new OpenLDAPConfig(readFileSync(ldapConfPath, 'utf8'));
 
