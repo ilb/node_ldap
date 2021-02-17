@@ -3,13 +3,12 @@ import LDAPConfig from './LDAPConfig';
 export default class OpenLDAPConfig extends LDAPConfig {
   constructor(config) {
     super();
-    this.config = config;
     this.ldapSchemasRegexp = /^ldaps?:\/\//;
-    this.loadValuesFromConfig();
+    this.loadValuesFromConfig(config);
   }
 
-  loadValuesFromConfig() {
-    const configMap = OpenLDAPConfig.parseConfig(this.config);
+  loadValuesFromConfig(config) {
+    const configMap = OpenLDAPConfig.parseConfig(config);
     if (configMap.URI) {
       this.uri = configMap.URI.split(/\s+/).filter((l) => l.match(this.ldapSchemasRegexp));
     }
