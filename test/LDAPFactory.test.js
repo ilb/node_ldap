@@ -1,7 +1,7 @@
 import LDAPFactory from '../src/LDAPFactory';
 const expected = 'mysql://localhost/testapp';
 
-const ldapFactory = new LDAPFactory();
+const ldapFactory = new LDAPFactory('test/ldap.conf');
 
 test('getInstance', async () => {
   const ldapResource = await ldapFactory.getLDAPResource();

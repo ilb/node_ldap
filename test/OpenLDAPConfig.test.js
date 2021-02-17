@@ -7,7 +7,7 @@ const ldapConfPath = path.resolve('test/ldap.conf');
 const ldapConfig = new OpenLDAPConfig(readFileSync(ldapConfPath, 'utf8'));
 
 const expectedConfig = {
-  BASE: 'dc=example,dc=com',
+  BASE: 'c=ru',
   TLS_CACERT: '/etc/ssl/certs/ourCAbundle.crt',
   URI: 'ldapi:/// ldaps://devel.net.ilb.ru ldaps://ldap.net.ilb.ru ldaps://ldap2.net.ilb.ru'
 };
@@ -29,7 +29,7 @@ test('getUri', () => {
 });
 
 test('getBase', () => {
-  expect(ldapConfig.getBase()).toBe('dc=example,dc=com');
+  expect(ldapConfig.getBase()).toBe('c=ru');
 });
 
 test('getCaCert', () => {

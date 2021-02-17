@@ -9,8 +9,7 @@ import CacheableLDAPResource from './CacheableLDAPResource';
  * LDAP facade with auto-configuration
  */
 export default class LDAPFactory {
-  constructor() {
-    const ldapConfPath = '/etc/openldap/ldap.conf';
+  constructor(ldapConfPath = '/etc/openldap/ldap.conf') {
     if (process.env.LDAP_URL) {
       //configure using LDAP_URL variable if set
       this.ldapConfig = new URILDAPConfig(process.env.LDAP_URL, process.env.NODE_EXTRA_CA_CERTS);
