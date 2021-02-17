@@ -5,9 +5,9 @@ import { readFileSync } from 'fs';
  */
 class LDAPClientConfig {
   constructor(ldapConfig) {
-    this.url = ldapConfig.getUri()[0];
-    if (ldapConfig.getCaCert()) {
-      this.tlsOptions = [readFileSync(ldapConfig.getCaCert())];
+    this.url = ldapConfig.uri[0];
+    if (ldapConfig.caCert) {
+      this.tlsOptions = [readFileSync(ldapConfig.caCert)];
     }
   }
 }

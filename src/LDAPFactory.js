@@ -44,7 +44,7 @@ export default class LDAPFactory {
   async getLDAPResource() {
     const ldapResource = await CacheableLDAPResource.getInstance(
       this.getLDAPClient(),
-      this.ldapConfig.getBase()
+      this.ldapConfig.base
     );
     return ldapResource;
   }

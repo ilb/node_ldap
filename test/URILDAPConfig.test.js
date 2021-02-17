@@ -7,14 +7,14 @@ const ldapConfig = new URILDAPConfig(
 
 const expectedUri = ['ldaps://devel.net.ilb.ru'];
 
-test('getUri', () => {
-  expect(ldapConfig.getUri()).toStrictEqual(expectedUri);
+test('uri', () => {
+  expect(ldapConfig.uri).toStrictEqual(expectedUri);
 });
 
-test('getBase', () => {
-  expect(ldapConfig.getBase()).toBe('c=ru');
+test('base', () => {
+  expect(ldapConfig.base).toBe('c=ru');
 });
 
-test('getCaCert', () => {
-  expect(ldapConfig.getCaCert()).toBe('/etc/ssl/certs/ourCAbundle.crt');
+test('caCert', () => {
+  expect(ldapConfig.caCert).toBe('/etc/ssl/certs/ourCAbundle.crt');
 });

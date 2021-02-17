@@ -7,16 +7,4 @@ export default class LDAPConfig {
     this.base = null;
     this.caCert = null;
   }
-
-  getUri() {
-    return this.uri;
-  }
-
-  getBase() {
-    return this.base;
-  }
-
-  getCaCert() {
-    return this.caCert;
-  }
 }
