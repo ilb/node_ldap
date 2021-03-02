@@ -8,20 +8,27 @@ test('getInstance', async () => {
   const resourceUrl = await ldapResource.lookup('ru.bystrobank.apps.testapp.db');
 
   expect(resourceUrl).toBe(expected);
+  expect(ldapFactory.isConfigured()).toBe(true);
 
   ldapFactory.close();
 });
 
-process.env.LDAP_URL = 'ldaps://devel.net.ilb.ru/cc=ru';
-const ldapFactory2 = new LDAPFactory();
+const ldapFactoryUnc = new LDAPFactory('/nonexistent.conf');
 
-test('getInstance2', async () => {
-  const ldapResource = await ldapFactory2.getLDAPResource();
+test('getInstanceUnc', async () => {
+  expect(ldapFactoryUnc.isConfigured()).toBe(false);
+});
+
+process.env.LDAP_URL = 'ldaps://devel.net.ilb.ru/cc=ru';
+const ldapFactoryUrl = new LDAPFactory();
+
+test('getInstance2+url', async () => {
+  const ldapResource = await ldapFactoryUrl.getLDAPResource();
   const resourceUrl = await ldapResource.lookup('ru.bystrobank.apps.testapp.db');
 
   expect(resourceUrl).toBe(expected);
 
-  expect(ldapFactory2.ldapConfig.base).toBe('cc=ru');
+  expect(ldapFactoryUrl.ldapConfig.base).toBe('cc=ru');
 
-  ldapFactory2.close();
+  ldapFactoryUrl.close();
 });

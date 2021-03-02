@@ -6,6 +6,10 @@ const ldapConfPath = path.resolve('test/ldap.conf');
 
 const ldapConfig = new OpenLDAPConfig(readFileSync(ldapConfPath, 'utf8'));
 
+const ldapConfPathUnc = path.resolve('test/unconfiguredldap.conf');
+
+const ldapConfigUnc = new OpenLDAPConfig(readFileSync(ldapConfPathUnc, 'utf8'));
+
 const expectedConfig = {
   BASE: 'c=ru',
   TLS_CACERT: '/etc/ssl/certs/ourCAbundle.crt',
@@ -34,4 +38,12 @@ test('base', () => {
 
 test('caCert', () => {
   expect(ldapConfig.caCert).toBe('/etc/ssl/certs/ourCAbundle.crt');
+});
+
+test('isConfigured', () => {
+  expect(ldapConfig.isConfigured()).toBe(true);
+});
+
+test('isUnConfigured', () => {
+  expect(ldapConfigUnc.isConfigured()).toBe(false);
 });
